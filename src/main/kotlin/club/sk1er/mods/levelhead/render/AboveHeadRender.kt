@@ -26,7 +26,11 @@ object AboveHeadRender {
     fun render(event: RenderLivingEvent.Specials.Post<EntityLivingBase>) {
         if (listOf(
                 !displayManager.config.enabled,
-                !(EssentialAPI.getMinecraftUtil().isHypixel() || getMinecraft().currentScreen is LevelheadGUI),
+                !(
+    (Minecraft.getMinecraft().currentServerData?.serverIP?.contains("hypixel.net", ignoreCase = true) == true
+    || Minecraft.getMinecraft().currentServerData?.serverIP?.contains("localhost", ignoreCase = true) == true)
+    || getMinecraft().currentScreen is LevelheadGUI
+)
                 getMinecraft().gameSettings.hideGUI
         ).any { it }) return
 
